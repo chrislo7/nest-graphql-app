@@ -21,7 +21,7 @@ export class User {
   age: number;
   
   // change this to @OneToMany after
-  @Column()
-  @Field()
-  order: string // list of products
+  @Column({nullable: true})
+  @Field({nullable: true})
+  order?: string // list of products
 }

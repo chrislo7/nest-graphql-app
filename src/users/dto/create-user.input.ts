@@ -11,6 +11,6 @@ export class CreateUserInput {
   @Field(type => Int)
   age: number
 
-  @Field()
-  order: string
+  @Field({ nullable: true })
+  order?: string
 }
