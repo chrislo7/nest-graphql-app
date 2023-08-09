@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Product } from "src/products/entities/product.entity";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @ObjectType()
@@ -20,8 +21,8 @@ export class User {
   @Field(type => Int)
   age: number;
   
-  // change this to @OneToMany after products is implemented
-  @Column({nullable: true})
-  @Field({nullable: true})
-  order?: string // list of products
+  @ManyToMany(() => Product, { cascade: true })
+  @JoinTable()
+  @Field(() => [Product], { defaultValue: [] })
+  order: Product[];
 }

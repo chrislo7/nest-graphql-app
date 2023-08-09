@@ -2,26 +2,47 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Product {
+  id: Int!
+  name: String!
+  price: Float!
+}
+
 type User {
   id: Int!
   name: String!
   email: String!
   age: Int!
-  order: String
+  order: [Product!]!
 }
 
 type Query {
   getUsers: [User!]!
   getUser(id: Int!): User!
+  getProducts: [Product!]!
+  getProduct(id: Int!): Product!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: Int!): Product!
 }
 
 input CreateUserInput {
   name: String!
   email: String!
   age: Int!
-  order: String
+}
+
+input CreateProductInput {
+  name: String!
+  price: Int!
+}
+
+input UpdateProductInput {
+  name: String!
+  price: Int!
+  id: Int!
 }

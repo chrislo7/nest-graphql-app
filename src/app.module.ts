@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true // NOTE: synchronize should be turned off in production!!
     }),
-    UsersModule
+    UsersModule,
+    ProductsModule
   ],
   controllers: [AppController],
   providers: [AppService],
