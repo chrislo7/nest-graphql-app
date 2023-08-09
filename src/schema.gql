@@ -31,7 +31,7 @@ type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   createMultipleProducts(bulkInput: [CreateProductInput!]!): [Product!]!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
-  removeProduct(id: Int!): Product!
+  removeProduct(id: Int!): String!
 }
 
 input CreateUserInput {
