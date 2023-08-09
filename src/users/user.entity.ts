@@ -20,7 +20,7 @@ export class User {
   @Field(type => Int)
   age: number;
   
-  // change this to @OneToMany after
+  // change this to @OneToMany after products is implemented
   @Column({nullable: true})
   @Field({nullable: true})
   order?: string // list of products
