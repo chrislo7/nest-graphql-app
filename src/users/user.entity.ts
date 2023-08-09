@@ -25,4 +25,11 @@ export class User {
   @JoinTable()
   @Field(() => [Product], { defaultValue: [] })
   order: Product[];
+
+  addProductsToOrder(products: Product[]) {
+    if (!this.order) {
+      this.order = []
+    }
+    this.order.push(...products);
+  }
 }

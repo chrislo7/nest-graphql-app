@@ -29,7 +29,7 @@ export class ProductsService {
     return this.productRepository.findOneOrFail({ where: { id } })
   }
 
-  update(id: number, updateProductInput: UpdateProductInput) {
+  updateProduct(id: number, updateProductInput: UpdateProductInput) {
     return `This action updates a #${id} product`;
   }
 
