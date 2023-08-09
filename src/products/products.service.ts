@@ -14,6 +14,13 @@ export class ProductsService {
     return this.productRepository.save(newProduct) // insert into db
   }
 
+  async bulkCreate(
+    createProductInput: CreateProductInput[],
+  ): Promise<Product[]> {
+    const products = this.productRepository.create(createProductInput);
+    return await this.productRepository.save(products);
+  }
+
   findAll() {
     return this.productRepository.find();
   }

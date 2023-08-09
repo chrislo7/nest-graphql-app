@@ -26,6 +26,7 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   createProduct(createProductInput: CreateProductInput!): Product!
+  createMultipleProducts(bulkInput: [CreateProductInput!]!): [Product!]!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: Int!): Product!
 }
@@ -38,7 +39,7 @@ input CreateUserInput {
 
 input CreateProductInput {
   name: String!
-  price: Int!
+  price: Float!
 }
 
 input UpdateProductInput {

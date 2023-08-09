@@ -13,6 +13,14 @@ export class ProductsResolver {
     return this.productsService.create(createProductInput);
   }
 
+  @Mutation(() => [Product])
+  createMultipleProducts(
+    @Args('bulkInput', { type: () => [CreateProductInput] })
+    bulkInput: CreateProductInput[],
+  ) {
+    return this.productsService.bulkCreate(bulkInput);
+  }
+
   @Query(() => [Product])
   getProducts() {
     return this.productsService.findAll();
