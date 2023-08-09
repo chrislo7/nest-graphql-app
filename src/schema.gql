@@ -7,9 +7,20 @@ type User {
   name: String!
   email: String!
   age: Int!
-  order: [String!]!
+  order: String!
 }
 
 type Query {
   users: [User!]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  age: Int!
+  order: String!
 }
