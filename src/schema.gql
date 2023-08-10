@@ -17,20 +17,42 @@ type User {
 }
 
 type Query {
+  """gets all users"""
   getUsers: [User!]!
+
+  """gets a single user by id"""
   getUser(id: Int!): User!
+
+  """Gets all products"""
   getProducts: [Product!]!
+
+  """Gets a single product by id"""
   getProduct(id: Int!): Product!
 }
 
 type Mutation {
+  """creates a single user"""
   createUser(createUserInput: CreateUserInput!): User!
+
+  """updates a single user by id"""
   updateUser(updateUserInput: UpdateUserInput!): User!
+
+  """removes a single user by id"""
   removeUser(id: Int!): String!
+
+  """Adds products to a user`s order list"""
   addProductsToUserOrder(addProductsToUserOrderInput: AddProductsToUserOrderInput!): User!
+
+  """Creates a single product"""
   createProduct(createProductInput: CreateProductInput!): Product!
-  createMultipleProducts(bulkInput: [CreateProductInput!]!): [Product!]!
+
+  """Creates multiple products at once"""
+  createMultipleProducts(bulkCreateInput: [CreateProductInput!]!): [Product!]!
+
+  """Updates a single product by id"""
   updateProduct(updateProductInput: UpdateProductInput!): Product!
+
+  """Removes a single product by id"""
   removeProduct(id: Int!): String!
 }
 

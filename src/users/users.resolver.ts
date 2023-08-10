@@ -5,42 +5,36 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { AddProductsToUserOrderInput } from './dto/add-product-to-user-order.input';
 
-@Resolver(of => User)
+@Resolver(() => User)
 export class UsersResolver {
   constructor(private usersService: UsersService) {}
 
-  // get a list of users
-  @Query(returns => [User])
+  @Query(returns => [User], { description: 'gets all users'})
   getUsers(): Promise<User[]> {
     return this.usersService.findAll()
   }
 
-  // get a single user
-  @Query(returns => User)
+  @Query(returns => User, { description: 'gets a single user by id'})
   getUser(@Args('id', {type: () => Int}) id: number): Promise<User> {
     return this.usersService.findOne(id)
   }
 
-  // create a single user
-  @Mutation(returns => User)
+  @Mutation(returns => User, { description: 'creates a single user'})
   createUser(@Args('createUserInput') createUserInput: CreateUserInput): Promise<User> {
     return this.usersService.createUser(createUserInput)
   }
 
-  // update a single user by ID
-  @Mutation(returns => User)
+  @Mutation(returns => User, { description: 'updates a single user by id'})
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput): Promise<User> {
     return this.usersService.updateUser(updateUserInput)
   }
 
-  // remove a single user by ID 
-  @Mutation(() => String)
+  @Mutation(() => String, { description: 'removes a single user by id' })
   removeUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.removeUser(id);
   }
 
-  // add products to a user's order list.
-  @Mutation(() => User)
+  @Mutation(() => User, { description: 'Adds products to a user`s order list'})
   async addProductsToUserOrder(
     @Args('addProductsToUserOrderInput') addProductsToUserOrderInput: AddProductsToUserOrderInput,
   ): Promise<User> {

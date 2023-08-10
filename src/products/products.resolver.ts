@@ -8,12 +8,12 @@ import { UpdateProductInput } from './dto/update-product.input';
 export class ProductsResolver {
   constructor(private readonly productsService: ProductsService) {}
 
-  @Mutation(() => Product)
+  @Mutation(() => Product, { description: 'Creates a single product'})
   createProduct(@Args('createProductInput') createProductInput: CreateProductInput) {
     return this.productsService.create(createProductInput);
   }
 
-  @Mutation(() => [Product])
+  @Mutation(() => [Product], { description: 'Creates multiple products at once' })
   createMultipleProducts(
     @Args('bulkCreateInput', { type: () => [CreateProductInput] })
     bulkCreateInput: CreateProductInput[],
@@ -21,22 +21,22 @@ export class ProductsResolver {
     return this.productsService.bulkCreate(bulkCreateInput);
   }
 
-  @Query(() => [Product])
+  @Query(() => [Product], { description: 'Gets all products' })
   getProducts() {
     return this.productsService.findAll();
   }
 
-  @Query(() => Product)
+  @Query(() => Product, { description: 'Gets a single product by id'})
   getProduct(@Args('id', { type: () => Int }) id: number) {
     return this.productsService.findOne(id);
   }
 
-  @Mutation(() => Product)
+  @Mutation(() => Product, { description: 'Updates a single product by id' })
   updateProduct(@Args('updateProductInput') updateProductInput: UpdateProductInput) {
     return this.productsService.updateProduct(updateProductInput);
   }
 
-  @Mutation(() => String)
+  @Mutation(() => String, { description: 'Removes a single product by id'})
   removeProduct(@Args('id', { type: () => Int }) id: number) {
     return this.productsService.removeProduct(id);
   }
