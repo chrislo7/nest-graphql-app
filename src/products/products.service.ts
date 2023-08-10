@@ -11,13 +11,13 @@ export class ProductsService {
 
   create(createProductInput: CreateProductInput) {
     const newProduct = this.productRepository.create(createProductInput)
-    return this.productRepository.save(newProduct) // insert into db
+    return this.productRepository.save(newProduct)
   }
 
   async bulkCreate(
-    createProductInput: CreateProductInput[],
+    bulkCreateInput: CreateProductInput[],
   ): Promise<Product[]> {
-    const products = this.productRepository.create(createProductInput);
+    const products = this.productRepository.create(bulkCreateInput);
     return await this.productRepository.save(products);
   }
 
@@ -29,8 +29,9 @@ export class ProductsService {
     return this.productRepository.findOneOrFail({ where: { id } })
   }
 
-  updateProduct(id: number, updateProductInput: UpdateProductInput) {
-    return `This action updates a #${id} product`;
+  async updateProduct(updateProductInput: UpdateProductInput) {
+    const product = await this.productRepository.findOneOrFail({ where: { id: updateProductInput.id } });
+    return this.productRepository.save({...product, ...updateProductInput});
   }
 
   async removeProduct(id: number): Promise<string> {

@@ -71,6 +71,23 @@ describe('UsersService', () => {
     });
   }) 
 
+  describe('removeUser', () => {
+    beforeEach(async () => {
+      const user: CreateUserInput = { name: 'bob', email: 'bob@bob.com', age: 28 };
+      await usersService.createUser(user);
+    })
+
+    it('should remove a user', async () => {
+      const results = await usersService.removeUser(1)
+      expect(results).toMatch('User with ID=1 successfully deleted.')
+    })
+
+    it('should fail to remove a product when provided an incorrect id', async () => {
+      const results = await usersService.removeUser(999)
+      expect(results).toMatch('Failed to delete user with ID=999.')
+    })
+  })
+
   describe('addProductsToUserOrder', () => {
     it('should add products ', async () => {
       const user: CreateUserInput = {
@@ -96,6 +113,4 @@ describe('UsersService', () => {
       expect(result.order[0]).toMatchObject(product)
     });
   }) 
-
-
 });

@@ -15,10 +15,10 @@ export class ProductsResolver {
 
   @Mutation(() => [Product])
   createMultipleProducts(
-    @Args('bulkInput', { type: () => [CreateProductInput] })
-    bulkInput: CreateProductInput[],
+    @Args('bulkCreateInput', { type: () => [CreateProductInput] })
+    bulkCreateInput: CreateProductInput[],
   ) {
-    return this.productsService.bulkCreate(bulkInput);
+    return this.productsService.bulkCreate(bulkCreateInput);
   }
 
   @Query(() => [Product])
@@ -33,7 +33,7 @@ export class ProductsResolver {
 
   @Mutation(() => Product)
   updateProduct(@Args('updateProductInput') updateProductInput: UpdateProductInput) {
-    return this.productsService.updateProduct(updateProductInput.id, updateProductInput);
+    return this.productsService.updateProduct(updateProductInput);
   }
 
   @Mutation(() => String)
