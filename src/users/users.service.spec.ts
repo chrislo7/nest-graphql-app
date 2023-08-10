@@ -82,7 +82,7 @@ describe('UsersService', () => {
       expect(results).toMatch('User with ID=1 successfully deleted.')
     })
 
-    it('should fail to remove a product when provided an incorrect id', async () => {
+    it('should fail to remove a user when provided an incorrect id', async () => {
       const results = await usersService.removeUser(999)
       expect(results).toMatch('Failed to delete user with ID=999.')
     })
