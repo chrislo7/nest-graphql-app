@@ -19,9 +19,9 @@ export class UsersService {
     return this.userRepository.save(newUser);
   }
 
-  async updateUser(id: number, updateUserInput: UpdateUserInput): Promise<User> {
+  async updateUser(updateUserInput: UpdateUserInput): Promise<User> {
     const user = await this.userRepository.findOneOrFail({
-      where: { id },
+      where: { id: updateUserInput.id },
       relations: [ 'order' ]
     });
     return this.userRepository.save({...user, ...updateUserInput});

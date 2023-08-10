@@ -30,7 +30,7 @@ export class UsersResolver {
   // update a single user by ID
   @Mutation(returns => User)
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput): Promise<User> {
-    return this.usersService.updateUser(updateUserInput.id, updateUserInput)
+    return this.usersService.updateUser(updateUserInput)
   }
 
   // remove a single user by ID 
