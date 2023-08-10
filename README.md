@@ -25,6 +25,7 @@ $ npm run test
 ```
 
 ## Documentation
+You can refer to the file `graphql_queries.md` for example queries/mutations to perform inside of graphql playground.
 
 ### API 
 #### Queries
